@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<odoo>
+    <!-- Modify Group name -->
+    <record id="library_app.library_group_user" model="res.groups">
+        <field name="name">Librarian</field>
+    </record>
+</odoo>
+<!--该段代码可理解为给name字段重写-->
+<!--使用<record>元素时，可以选择要执行写操作的字段，-->
+<!--但对 shortcut 元素则并非如此，如<menuitem>和<act_window>。-->
+    <!--它们需要提供所有的属性，漏写任何一个都会将对应字段置-->
+    <!--为空值。但可使用<record>为原本通过 shortcut 元素创建-->
+        <!--的字段设置值。-->
