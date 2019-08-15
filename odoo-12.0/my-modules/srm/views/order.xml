@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+        <record id="srm_order_purchase_view" model="ir.actions.act_window">
+            <field name="name">采购订单</field>
+            <field name="res_model">srm.order</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="srm_order_detail_view" model="ir.actions.act_window">
+            <field name="name">采购订单明细</field>
+            <field name="res_model">srm.order.detail</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="订单管理" id="srm_order_menu_root" parent="srm_menu_root"/>
+        <menuitem name="采购订单" id="srm_order_purchase" parent="srm_order_menu_root" action="srm_order_purchase_view"/>
+        <menuitem name="采购订单明细" id="srm_order_detail" parent="srm_order_menu_root" action="srm_order_detail_view"/>
+
+        <record id="srm_order_purchase_list" model="ir.ui.view">
+            <field name="name">采购订单</field>
+            <field name="model">srm.order</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="supplier_id" />
+                    <field name="type" />
+                    <field name="company_id" />
+                    <field name="status" />
+                    <field name="create_date" string="创建时间"/>
+                </tree>
+            </field>
+        </record>
+        <record id="srm_order_detail_list" model="ir.ui.view">
+            <field name="name">采购订单明细</field>
+            <field name="model">srm.order.detail</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="order_id" />
+                    <field name="line_code" />
+                    <field name="material_id" />
+                    <field name="requested_arrival_date"/>
+                    <field name="required_quantity" />
+                    <field name="can_send_quantity" />
+                    <field name="send_quantity" />
+                    <field name="receive_quantity" />
+                    <field name="return_quantity" />
+                    <field name="unit" />
+                    <field name="factory_id" />
+                    <field name="warehouse_id" />
+                    <field name="status" />
+                </tree>
+            </field>
+        </record>
+        <record id="srm_order_purchase_search" model="ir.ui.view">
+            <field name="name">采购订单搜索</field>
+            <field name="model">srm.order</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+        <record id="srm_order_detail_search" model="ir.ui.view">
+            <field name="name">采购订单明细搜索</field>
+            <field name="model">srm.order.detail</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="order_id" />
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_srm_supplier_company,srm.normal.suplier.company,model_srm_master_company,group_srm_supplier,1,1,1,0
+access_srm_admin_company,srm.admin.company,model_srm_master_company,group_srm_admin,1,1,1,1
+access_srm_user_company,srm.normal.user.company,model_srm_master_company,group_srm_normal_user,1,1,1,0

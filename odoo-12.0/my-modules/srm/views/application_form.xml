@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <record id="srm_application_form_view" model="ir.actions.act_window">
+            <field name="name">申请单</field>
+            <field name="res_model">srm.application.form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="srm_application_form_detail_view" model="ir.actions.act_window">
+            <field name="name">申请单明细</field>
+            <field name="res_model">srm.application.form.detail</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="申请管理" id="srm_application_form_menu_root" parent="srm_menu_root"
+        groups="group_srm_admin"/>
+        <menuitem name="申请单" id="srm_application_form" parent="srm_application_form_menu_root" action="srm_application_form_view"/>
+        <menuitem name="申请单明细" id="srm_application_form_detail" parent="srm_application_form_menu_root" action="srm_application_form_detail_view"/>
+
+        <record id="srm_application_form_list" model="ir.ui.view">
+            <field name="name">申请单</field>
+            <field name="model">srm.application.form</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="no" />
+                    <field name='formName' />
+                    <field name="state" />
+                    <field name="type" />
+                    <field name="applicant" />
+
+                </tree>
+            </field>
+        </record>
+        <record id="srm_application_form_detail_list" model="ir.ui.view">
+            <field name="name">申请单明细</field>
+            <field name="model">srm.application.form.detail</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="applyTime" />
+                    <field name="nextApprover" />
+                    <field name="lastApprovTime" />
+                </tree>
+            </field>
+        </record>
+        <record id="srm_application_form_search" model="ir.ui.view">
+            <field name="name">申请单搜索</field>
+            <field name="model">srm.application.form</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="no" />
+                </search>
+            </field>
+        </record>
+        <record id="srm_application_formdetail_search" model="ir.ui.view">
+            <field name="name">申请单明细搜索</field>
+            <field name="model">srm.application.form.detail</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="applyTime" />
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

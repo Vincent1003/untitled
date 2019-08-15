@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <record id="srm_receive_order_view" model="ir.actions.act_window">
+            <field name="name">收货单</field>
+            <field name="res_model">srm.receive.order</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="srm_receive_order_detail_view" model="ir.actions.act_window">
+            <field name="name">收货单明细</field>
+            <field name="res_model">srm.receive.order.detail</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="收货单管理" id="srm_receive_order_menu_root" parent="srm_menu_root"
+        groups="group_srm_normal_user"/>
+        <menuitem name="收货单" id="srm_receive_order" parent="srm_receive_order_menu_root" action="srm_receive_order_view"/>
+        <menuitem name="收货单明细" id="srm_receive_order_detail" parent="srm_receive_order_menu_root" action="srm_receive_order_detail_view"/>
+
+        <record id="srm_receive_order_list" model="ir.ui.view">
+            <field name="name">收货单</field>
+            <field name="model">srm.receive.order</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="ship_time" />
+                    <field name="arrival_time" />
+                    <field name="unloading_person" />
+                    <field name="unloading_telephone" />
+                    <field name="delivery_type" />
+                    <field name="create_uid" string="采购员" />
+                    <field name="supplier_id" />
+                    <field name="company_id" />
+                    <field name="warehouse_id" />
+                    <field name="receive_from" />
+                    <field name="status" />
+                    <field name="remark" />
+                </tree>
+            </field>
+        </record>
+        <record id="srm_receive_order_detail_list" model="ir.ui.view">
+            <field name="name">收货单明细</field>
+            <field name="model">srm.receive.order.detail</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="invoice_id" />
+                    <field name="line_code" />
+                    <field name="material_id" />
+                    <field name="send_quantity" />
+                    <field name="receive_quantity" />
+                    <field name="order_id" />
+                </tree>
+            </field>
+        </record>
+        <record id="srm_receive_order_search" model="ir.ui.view">
+            <field name="name">收货单搜索</field>
+            <field name="model">srm.receive.order</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+        <record id="srm_receive_order_detail_search" model="ir.ui.view">
+            <field name="name">收货单明细搜索</field>
+            <field name="model">srm.receive.order.detail</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="order_id" />
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

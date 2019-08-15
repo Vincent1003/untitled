@@ -1,0 +1,83 @@
+<odoo>
+ <!-- noupdate 模型升级时是否更新本条数据 0 =更新-->
+    <data noupdate="0">
+      <!--创建类别-->
+    <record model="ir.module.category" id="module_category_srm">
+        <field name="name">srm authority</field>
+            <!--<field name="sequence">6</field> 设置顺序 -->
+    </record>
+  <!--创建基于类别的权限组-->
+    <record model="res.groups" id="group_srm_normal_user">
+        <field name="name">srm normal user</field>
+            <field name="category_id"
+                   ref="module_category_srm"/>
+            <field name="implied_ids"
+                   eval="[4,ref('base.group_user')]"/>
+    </record>
+
+     <record model="res.groups" id="group_srm_supplier">
+        <field name="name">srm supplier</field>
+            <field name="implied_ids"
+                   eval="[(4, ref('group_srm_normal_user'))]"/>
+            <field name="category_id"
+                   ref="module_category_srm"/>
+    </record>
+
+    <record model="res.groups" id="group_srm_admin">
+        <field name="name">srm admin</field>
+        <field name="implied_ids"
+                   eval="[(4, ref('group_srm_supplier'))]"/>
+        <field name="category_id"
+                   ref="module_category_srm"/>
+        <!--👇让管理员和内部root用户自动成为应用管理员👇-->
+        <field name="users"
+                eval="[(4, ref('base.user_root')),
+                    (4, ref('base.user_admin'))]" />
+    </record>
+
+    <!--在 Odoo老版本中，admin 管理员用户同时也是 root 用户。-->
+    <!--Odoo 12中有一个系统 root用户，在用户列表中不显示，-->
+    <!--仅在框架需要进行提权(sudo)时在内部使用。admin可以登入-->
+    <!--系统并应拥有所有功能的访问权限，但不再像系统 root -->
+    <!--用户那样可以绕过访问限制-->
+
+
+        <!--在这里写 rule-->
+  <record id="srm_creator_see_only" model="ir.rule">
+    <!-- 规则名称 -->
+    <field name="name">user CREATOR ONLY exception:admin</field>
+    <!-- 对应模型 -->
+    <field name="model_id" ref="model_srm_master_company"/>
+    <!-- 是否全局 -->
+    <field name="global" eval="False"/>
+    <!-- 过滤条件 其中user表示当前登录用户对象 -->
+    <field name="domain_force">
+        [('create_uid', '=' ,user.id)]
+    </field>
+      <field name="groups" eval="[(4,ref('group_srm_normal_user'))]"/>
+  </record>
+
+        <!--该规则并未生效，待完善  -->
+        <!--考虑从rule之间的关系解决-->
+<record id="srm_admin_see_all" model="ir.rule">
+    <!-- 规则名称 -->
+    <field name="name">admin SEE ALL</field>
+    <!-- 对应模型 -->
+    <field name="model_id" ref="model_srm_master_company"/>
+    <!-- 是否全局 -->
+    <field name="global" eval="False"/>
+    <!-- 过滤条件  -->
+    <field name="domain_force">
+        [(1, '=' ,1)]
+    </field>
+    <field name="groups" eval="[(4,ref('group_srm_admin'))]"/>
+
+    <!-- 这段可选......读写增删权限（针对过滤后的记录） -->
+    <!--<field name="perm_read" eval="True"/>-->
+    <!--<field name="perm_write" eval="False"/>-->
+    <!--<field name="perm_create" eval="False"/>-->
+    <!--<field name="perm_unlink" eval="False"/>-->
+</record>
+
+    </data>
+</odoo>

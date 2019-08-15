@@ -1,0 +1,97 @@
+<!-- 新增一个菜单 p69 用户界面-->
+<odoo>
+    <data>
+            <!--explict list view definition-->
+       <!--arc 元素包含的类型 树形/列表 表单 搜索 类型为 xml-->
+      <record id="bug-manage.list" model="ir.ui.view">
+        <field name="name">bug列表</field>
+        <field name="model">bm.bug</field>
+        <field name="arch" type="xml">
+          <tree>
+            <field name="name"/>
+            <field name="is_closed"/>
+            <field name="user_id"/>
+          </tree>
+        </field>
+      </record>
+
+<!--业务表单视图-->
+      <record id="bug-manage.form" model="ir.ui.view">
+        <field name="name">bug 表单</field>
+        <field name="model">bm.bug</field>
+        <field name="arch" type="xml">
+          <form>
+            <header>
+              <button name="do_close" type="object" string="关闭bug"/>
+            </header>
+            <sheet>
+              <group name="group_top" col="2"> <!--col=2意为该组分为两列-->
+                <group name="group_left">
+                  <field name="name"/>
+                  <field name="is_closed"/>
+                  <field name="user_id"/>
+                </group>
+                <group name="group_right">
+                  <field name="close_reason"/>
+                  <field name="follower"/>
+                </group>
+              </group>
+              <notebook>
+                <page string="详细内容">
+                  <field name="detail"/>
+                </page>
+              </notebook>
+            </sheet>
+          </form>
+        </field>
+      </record>
+
+      <!--搜索视图-->
+      <record model="ir.ui.view" id="bug-manage.search">
+        <field name="name">bug搜索</field>
+        <field name="model">bm.bug</field>
+        <field name="arch" type="xml">
+          <search>
+            <field name="name"/>
+            <field name="is_closed"/>
+            <field name="user_id"/>
+          </search>
+        </field>
+      </record>
+
+        <!--  定义窗口动作 window action 用于将模型的数据显示出来  -->
+        <!--窗口动作存储在 数据库ir.actions.act_windows模型中-->
+        <!--使用record向模型中新增我们定义的窗口动作-->
+        <!--model属性标识该元素为窗口动作，表明本记录需要插入的模型-->
+        <!--res_model是视图取数的模型-->
+        <!--view_mode代表按顺序展示的视图类型-->
+        <!--id属性需要在整个odoo应用中唯一 否则报错 即使冲突id所在模块为安装也报错-->
+
+      <!-- explicit list view definition-->
+      <record id ="bug-manage.action_window" model ="ir.actions.act_window" >
+        <field name="name">bug-manage window</field>
+        <field name="res_model">bm.bug</field>
+        <field name ="view_mode" >tree,form</field>
+        </record>
+
+<!-- actions opening view on models -->
+        <!--定义菜单 -->
+
+        <!--menuitem定义一个ir.ui.menu-->
+        <!--不适用parent属性默认顶级菜单-->
+        <!--xml按顺序解释 故徐将动作写在菜单之前-->
+
+        <!-- top menu item-->
+        <menuitem name ="bug管理系统" id ="bug-manage.menu_root"/>
+        <!-- menu categories-->
+        <menuitem name ="bug管理" id="bug-manage.menu_1" parent="bug-manage.menu_root" />
+        <!--actions-->
+        <menuitem name ="bug列表" id="bug-manage.menu_1_list" parent="bug-manage.menu_1"
+                  action="bug-manage.action_window"/>
+
+
+
+
+
+    </data>
+</odoo>

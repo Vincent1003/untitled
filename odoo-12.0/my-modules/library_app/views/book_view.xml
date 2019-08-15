@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<odoo>
+  <!--视图都存储在数据库ir.ui.view模型中-->
+    <record id="view_form_book" model="ir.ui.view">
+      <!--id，它定义了一个可在其它记录中引用的XML ID标识符-->
+        <field name="name">Book Form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+
+
+
+            <form string="Book">
+              <!--form 视图结构-->
+              <header>
+<!--表单可带有执行操作的按钮。这些按钮可用于运行窗
+口操作，如打开另一个表单或执行模型中定义的 Python 方法。-->
+<!--按钮可以放在表单的任意位置，但对于文件样式表单，-->
+<!--推荐的位置是header中。-->
+
+                <!--添加图书 ISBN，和一个用于检测 ISBN 有效性的按钮-->
+ <button name="button_check_isbn" type="object"
+        string="Check ISBN" />
+              </header>
+                <sheet>
+                  <group name="group_top">
+                   <group name="group_left">
+                    <field name="name" />
+                    <field name="author_ids" widget="many2many_tags" />
+                    <field name="publisher_id" />
+                    <field name="date_published" />
+                    </group>
+                  <group name="group_right">
+                    <field name="isbn" />
+                    <field name="active" />
+                    <field name="image" widget="image" />
+                </group>
+                </group>
+              </sheet>
+            </form>
+        </field>
+    </record>
+
+
+  <!--tree视图-->
+      <record id="view_tree_book" model="ir.ui.view">
+        <field name="name">Book List</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="author_ids" widget="many2many_tags" />
+                <field name="publisher_id" />
+                <field name="date_published" />
+            </tree>
+        </field>
+    </record>
+  <!--搜索视图-->
+      <record id="view_search_book" model="ir.ui.view">
+        <field name="name">Book Filters</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="publisher_id" />
+              <!--<field>元素定义在搜索框中输入搜索的字段，
+              这里添加了publisher_id自动提示出版商字段。
+              <filter>元素添加预定义过滤条件，用户通过点击来切换-->
+                <filter name="filter_active"
+                    string="Active"
+                    domain="[('active','=',True)]" />
+               <filter name="filter_inactive"
+                    string="Inactive"
+                    domain="[('active','=',False)]" />
+            </search>
+        </field>
+    </record>
+</odoo>

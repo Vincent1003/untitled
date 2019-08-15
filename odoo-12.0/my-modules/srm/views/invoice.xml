@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <record id="srm_invoice_view" model="ir.actions.act_window">
+            <field name="name">送货单</field>
+            <field name="res_model">srm.invoice</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="srm_invoice_detail_view" model="ir.actions.act_window">
+            <field name="name">送货单明细</field>
+            <field name="res_model">srm.invoice.detail</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="送货单管理" id="srm_invoice_menu_root" parent="srm_menu_root"
+        groups="group_srm_supplier"/>
+        <menuitem name="送货单" id="srm_invoice" parent="srm_invoice_menu_root" action="srm_invoice_view"/>
+        <menuitem name="送货单明细" id="srm_invoice_detail" parent="srm_invoice_menu_root" action="srm_invoice_detail_view"/>
+
+        <record id="srm_invoice_list" model="ir.ui.view">
+            <field name="name">送货单</field>
+            <field name="model">srm.invoice</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="ship_time" />
+                    <field name="arrival_time" />
+                    <field name="unloading_person" />
+                    <field name="unloading_telephone" />
+                    <field name="delivery_type" />
+                    <field name="create_uid" string="采购员" />
+                    <field name="supplier_id" />
+                    <field name="company_id" />
+                    <field name="warehouse_id" />
+                    <field name="transport_from" />
+                    <field name="status" />
+                    <field name="remark" />
+                </tree>
+            </field>
+        </record>
+        <record id="srm_invoice_detail_list" model="ir.ui.view">
+            <field name="name">送货单明细</field>
+            <field name="model">srm.invoice.detail</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="invoice_id" />
+                    <field name="line_code" />
+                    <field name="material_id" />
+                    <field name="send_quantity" />
+                    <field name="receive_quantity" />
+                    <field name="order_id" />
+                </tree>
+            </field>
+        </record>
+        <record id="srm_invoice_search" model="ir.ui.view">
+            <field name="name">送货单搜索</field>
+            <field name="model">srm.invoice</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+        <record id="srm_invoice_detail_search" model="ir.ui.view">
+            <field name="name">送货单明细搜索</field>
+            <field name="model">srm.invoice.detail</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="order_id" />
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

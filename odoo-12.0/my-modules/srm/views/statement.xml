@@ -1,0 +1,113 @@
+<odoo>
+    <data>
+        <record id="srm_statement_view" model="ir.actions.act_window">
+            <field name="name">结算单</field>
+            <field name="res_model">srm.statement</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="srm_statement_detail_view" model="ir.actions.act_window">
+            <field name="name">结算单明细</field>
+            <field name="res_model">srm.statement.detail</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="srm_source_view" model="ir.actions.act_window">
+            <field name="name">结算源</field>
+            <field name="res_model">srm.source</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="结算单管理" id="srm_statement_menu_root" parent="srm_menu_root"/>
+        <menuitem name="结算单" id="srm_statement" parent="srm_statement_menu_root" action="srm_statement_view"/>
+        <menuitem name="结算单明细" id="srm_statement_detail" parent="srm_statement_menu_root" action="srm_statement_detail_view"/>
+        <menuitem name="结算源" id="srm_source" parent="srm_statement_menu_root" action="srm_source_view"/>
+
+        <record id="srm_statement_list" model="ir.ui.view">
+            <field name="name">结算单</field>
+            <field name="model">srm.statement</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="supplier_id" />
+                    <field name="company_id" />
+                    <field name="bill_amount" />
+                    <field name="deliver_type" />
+                    <field name="deliver_code" />
+                    <field name="create_uid" string="发起人" />
+                    <field name="factory_id" />
+                    <field name="status" />
+                    <field name="send_sap" />
+                    <field name="create_date" string="发起日期"/>
+                </tree>
+            </field>
+        </record>
+        <record id="srm_statement_detail_list" model="ir.ui.view">
+            <field name="name">结算单明细</field>
+            <field name="model">srm.statement.detail</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="order_id" />
+                    <field name="material_id" />
+                    <field name="unit_price" />
+                    <field name="amount"/>
+                    <field name="tax_rate" />
+                    <field name="tax_amount" />
+                    <field name="audit_amount" />
+                    <field name="unit" />
+                    <field name="pre" />
+                    <field name="warehouse_id" />
+                </tree>
+            </field>
+        </record>
+        <record id="srm_source_list" model="ir.ui.view">
+            <field name="name">结算源</field>
+            <field name="model">srm.source</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="supplier_id" />
+                    <field name="order_id" />
+                    <field name="material_id" />
+                    <field name="unit" />
+                    <field name="quantity" />
+                    <field name="tax_rate" />
+                    <field name="unit_price" />
+                    <field name="pre" />
+                    <field name="audit_amount" />
+                    <field name="company_id" />
+                    <field name="factory_id" />
+                    <field name="warehouse_id" />
+                    <field name="status" />
+                    <field name="source" />
+                </tree>
+            </field>
+        </record>
+        <record id="srm_statement_search" model="ir.ui.view">
+            <field name="name">结算单搜索</field>
+            <field name="model">srm.statement</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+        <record id="srm_statement_detail_search" model="ir.ui.view">
+            <field name="name">采购订单明细搜索</field>
+            <field name="model">srm.statement.detail</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+        <record id="srm_source_search" model="ir.ui.view">
+            <field name="name">结算源搜索</field>
+            <field name="model">srm.source</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

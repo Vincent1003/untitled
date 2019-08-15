@@ -1,0 +1,254 @@
+<odoo>
+    <data>
+        <record id="srm_master_company_view" model="ir.actions.act_window">
+            <field name="name">公司主数据</field>
+            <field name="res_model">srm.master.company</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="srm_master_factory_view" model="ir.actions.act_window">
+            <field name="name">工厂主数据</field>
+            <field name="res_model">srm.master.factory</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="srm_master_warehouse_view" model="ir.actions.act_window">
+            <field name="name">仓库主数据</field>
+            <field name="res_model">srm.master.warehouse</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="srm_master_purchasegroup_view" model="ir.actions.act_window">
+            <field name="name">采购组主数据</field>
+            <field name="res_model">srm.master.purchasegroup</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="srm_master_supplier_view" model="ir.actions.act_window">
+            <field name="name">供应商主数据</field>
+            <field name="res_model">srm.master.supplier</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="srm_master_material_view" model="ir.actions.act_window">
+            <field name="name">物料主数据</field>
+            <field name="res_model">srm.master.material</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="srm_master_pack_view" model="ir.actions.act_window">
+            <field name="name">包装主数据</field>
+            <field name="res_model">srm.master.pack</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="SRM" id="srm_menu_root" />
+        <menuitem name="主数据管理" id="srm_master_menu_root" parent="srm_menu_root"/>
+        <menuitem name="公司主数据" id="srm_master_company" parent="srm_master_menu_root" action="srm_master_company_view"/>
+        <menuitem name="工厂主数据" id="srm_master_factory" parent="srm_master_menu_root" action="srm_master_factory_view"/>
+        <menuitem name="仓库主数据" id="srm_master_warehouse" parent="srm_master_menu_root" action="srm_master_warehouse_view"/>
+        <menuitem name="采购组主数据" id="srm_master_purchasegroup" parent="srm_master_menu_root" action="srm_master_purchasegroup_view"/>
+        <menuitem name="供应商主数据" id="srm_master_supplier" parent="srm_master_menu_root" action="srm_master_supplier_view"/>
+        <menuitem name="物料主数据" id="srm_master_material" parent="srm_master_menu_root" action="srm_master_material_view"/>
+        <menuitem name="包装主数据" id="srm_master_pack" parent="srm_master_menu_root" action="srm_master_pack_view"/>
+
+        <record id="srm_master_company_list" model="ir.ui.view">
+            <field name="name">公司主数据</field>
+            <field name="model">srm.master.company</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="abbreviation" />
+                    <field name="link_man" />
+                    <field name="phone" />
+                    <field name="address" />
+                    <field name="tax_code" />
+                    <field name="fax" />
+                    <field name="remark" />
+                    <field name="create_date" string="创建时间"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="srm_master_factory_list" model="ir.ui.view">
+            <field name="name">工厂主数据</field>
+            <field name="model">srm.master.factory</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="company_id" />
+                    <field name="remark" />
+                    <field name="create_date" string="创建时间"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="srm_master_warehouse_list" model="ir.ui.view">
+            <field name="name">仓库主数据</field>
+            <field name="model">srm.master.warehouse</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="address" />
+                    <field name="factory_id" />
+                    <field name="remark" />
+                    <field name="create_date" string="创建时间"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="srm_master_purchasegroup_list" model="ir.ui.view">
+            <field name="name">采购组主数据</field>
+            <field name="model">srm.master.purchasegroup</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="remark" />
+                    <field name="create_date" string="创建时间"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="srm_master_supplier_list" model="ir.ui.view">
+            <field name="name">供应商主数据</field>
+            <field name="model">srm.master.supplier</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="abbreviation" />
+                    <field name="link_man" />
+                    <field name="phone" />
+                    <field name="address" />
+                    <field name="tax_code" />
+                    <field name="deposit_bank" />
+                    <field name="account" />
+                    <field name="email" />
+                    <field name="fax" />
+                    <field name="remark" />
+                    <field name="create_date" string="创建时间"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="srm_master_material_list" model="ir.ui.view">
+            <field name="name">物料主数据</field>
+            <field name="model">srm.master.material</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="standard" />
+                    <field name="unit" />
+                    <field name="description" />
+                    <field name="remark" />
+                    <field name="create_date" string="创建时间"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="srm_master_pack_list" model="ir.ui.view">
+            <field name="name">包装主数据</field>
+            <field name="model">srm.master.pack</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="material_id" />
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="capacity" />
+                    <field name="unit" />
+                    <field name="remark" />
+                    <field name="create_date" string="创建时间"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="srm_master_company_search" model="ir.ui.view">
+            <field name="name">公司搜索</field>
+            <field name="model">srm.master.company</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="link_man" />
+                </search>
+            </field>
+        </record>
+
+        <record id="srm_master_factory_search" model="ir.ui.view">
+            <field name="name">工厂搜索</field>
+            <field name="model">srm.master.factory</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="company_id" />
+                </search>
+            </field>
+        </record>
+
+        <record id="srm_master_warehouse_search" model="ir.ui.view">
+            <field name="name">仓库搜索</field>
+            <field name="model">srm.master.warehouse</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="factory_id" />
+                </search>
+            </field>
+        </record>
+
+        <record id="srm_master_purchasegroup_search" model="ir.ui.view">
+            <field name="name">采购组搜索</field>
+            <field name="model">srm.master.purchasegroup</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="code" />
+                </search>
+            </field>
+        </record>
+
+        <record id="srm_master_supplier_search" model="ir.ui.view">
+            <field name="name">供应商搜索</field>
+            <field name="model">srm.master.supplier</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="link_man" />
+                    <field name="phone" />
+                </search>
+            </field>
+        </record>
+
+        <record id="srm_master_material_search" model="ir.ui.view">
+            <field name="name">物料搜索</field>
+            <field name="model">srm.master.material</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="standard" />
+                </search>
+            </field>
+        </record>
+
+        <record id="srm_master_pack_search" model="ir.ui.view">
+            <field name="name">包装搜索</field>
+            <field name="model">srm.master.pack</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="code" />
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

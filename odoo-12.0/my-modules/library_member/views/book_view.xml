@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_form_book_extend" model="ir.ui.view">
+        <field name="name">Book: add Is Available? field</field>
+        <field name="model">library.book</field>
+        <field name="inherit_id" ref="library_app.view_form_book" />
+        <field name="arch" type="xml">
+          <!--使用唯一标识属性，通常是 name来添加定位节点。添加定位属性，声明要做的修改。-->
+          <!--本例中继承节点是name=”isbn”元素，修改是在选定元素*后 after*加一段 XML：-->
+            <field name="isbn" position="after">
+                <field name="is_available" />
+            </field>
+        </field>
+    </record>
+</odoo>
+<!--一旦 XML 节点被选为继承点，需要指明要执行的继承操作。这通过 position 属性实现：-->
+
+<!--inside（默认值）：在所选节点内添加内容，这一节点应是<group>或<page>一类的容器-->
+<!--after：在选定节点之后向父节点添加内容-->
+<!--before：在选定节点之前向父节点添加内容-->
+<!--replace：替换所选节点。若使用空元素则会删除该元素。Odoo 之后还允许使用其它标记来-->
+  <!--包裹元素，通过在内容中使用$0来表示被替换的元素。-->
+<!--attributes：修改匹配元素属性值。内容中应包含带有一个或多个-->
+  <!--<attribute name=”attr-name”>value</attribute>元素。-->
+<!--如<attribute name=”invisible”>True</attribute>-->
+        <!--若不带内容，如<attribute name=”invisible” />则 attribute 会从所选元素中删除。-->
+
+<!--除了attributes定位，上述定位符可与带position=”move”的子元素合并。-->
+        <!--效果是将子定位符目标节点移到父定位符目录位置。-->

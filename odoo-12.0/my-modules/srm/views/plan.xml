@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <record id="srm_plan_view" model="ir.actions.act_window">
+            <field name="name">采购计划</field>
+            <field name="res_model">srm.plan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="srm_plan_detail_date_view" model="ir.actions.act_window">
+            <field name="name">今日计划</field>
+            <field name="res_model">srm.plan.detail.date</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="srm_plan_detail_week_view" model="ir.actions.act_window">
+            <field name="name">本周计划</field>
+            <field name="res_model">srm.plan.detail.week</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="srm_plan_detail_month_view" model="ir.actions.act_window">
+            <field name="name">本月计划</field>
+            <field name="res_model">srm.plan.detail.month</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="采购计划" id="srm_plan_menu_root" parent="srm_menu_root"/>
+        <menuitem name="采购计划" id="srm_plan" parent="srm_plan_menu_root" action="srm_plan_view"/>
+        <menuitem name="今日计划" id="srm_plan_detail_date" parent="srm_plan_menu_root" action="srm_plan_detail_date_view"/>
+        <menuitem name="本周计划" id="srm_plan_detail_week" parent="srm_plan_menu_root" action="srm_plan_detail_week_view"/>
+        <menuitem name="本月计划" id="srm_plan_detail_month" parent="srm_plan_menu_root" action="srm_plan_detail_month_view"/>
+
+        <record id="srm_purchase_plan_list" model="ir.ui.view">
+            <field name="name">采购计划</field>
+            <field name="model">srm.plan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="supplier_id" />
+                    <field name="material_id" />
+                    <field name="company_id" />
+                    <field name="purgroup_id"/>
+                    <field name="status" />
+                    <field name="create_date" string="创建时间"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
