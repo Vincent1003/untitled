@@ -4,7 +4,7 @@ class Member(models.Model):
     _name = 'library.member'
     _description = 'Library Member'
     # 通过下方代码模型可以包含mixin的所有字段和方法
-    # _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     card_number = fields.Char()
     partner_id = fields.Many2one(
         'res.partner',
