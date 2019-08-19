@@ -13,7 +13,7 @@ class Books(http.Controller):
         books = Book.search([])
         return http.request.render(
             'library_app.book_list_template', {'books':books})
-        #使用http.request.render() 来处理 library_app.index_template Qweb
+        # 使用http.request.render() 来处理 library_app.index_template Qweb
         # 模板并生成输出 HTML。可通过字典向模板传值，这里传递了图书记录集。
 
 
